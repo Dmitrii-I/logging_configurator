@@ -1,2 +1,2 @@
 # file-logger
-Simple file logger -- no frills, no customization
+Simple file logger for Python scripts.
