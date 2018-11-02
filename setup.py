@@ -1,14 +1,22 @@
+""" See [1] on how to write proper `setup.py` script.
+
+[1] https://github.com/pypa/sampleproject/blob/master/setup.py
+"""
+
 
 from setuptools import setup
-from file_logger import __version__
+from logging_configurator import __version__
 
 
 setup(
-    name='file_logger',
+    name='logging_configurator',
     version=__version__,
-    description='Simple file logger for Python scripts.',
+    description='One-liner logging configurator for Python.',
+    long_description='Configure logging in one line and fogetaboutit.',
+    url='None',
     author='Dmitrii Izgurskii',
     author_email='izgurskii@gmail.com',
-    url='https://github.com/Dmitrii-I/file-logger',
-    license='MIT'
+    license='MIT',
+    keywords='logging',
+    packages=['logging_configurator']
 )
