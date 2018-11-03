@@ -43,7 +43,7 @@ setup(
     version=__version__,
     description='One-liner logging configurator for Python.',
     long_description='Configure logging in one line and fogetaboutit.',
-    url='None',
+    url='https://github.com/Dmitrii-I/logging-configurator',
     author='Dmitrii Izgurskii',
     author_email='izgurskii@gmail.com',
     license='MIT',
