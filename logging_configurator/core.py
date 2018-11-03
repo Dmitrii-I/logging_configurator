@@ -1,6 +1,7 @@
 import logging
 import logging.config
 import sys
+from os.path import expanduser, expandvars
 
 
 def _log_exceptions_in_root_logger() -> None:
@@ -46,7 +47,7 @@ def configure_logging(path: str = None, log_level: str = 'INFO', append: bool = 
         handlers['file'] = {
             'class': 'logging.FileHandler',
             'formatter': 'simple',
-            'filename': path,
+            'filename': expandvars(expanduser(path)),
             'encoding': 'utf8',
             'mode': 'a' if append else 'w',
         }
