@@ -49,5 +49,6 @@ setup(
     license='MIT',
     keywords='logging',
     packages=find_packages(exclude=['contrib', 'docs', '*test*']),
-    cmdclass={'upload': UploadCommand}
+    cmdclass={'upload': UploadCommand},
+    python_requires=">=3.6.0"
 )
