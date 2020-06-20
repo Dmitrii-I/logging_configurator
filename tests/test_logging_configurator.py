@@ -1,3 +1,5 @@
 """Test `logging_configurator` package."""
 
-assert True
+
+def test_package():
+    assert True
