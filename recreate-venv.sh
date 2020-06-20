@@ -4,7 +4,7 @@ POSIXLY_CORRECT=1 set -o errexit && set -o nounset && set -o pipefail && unset P
 
 cd ~/logging_configurator
 
-echo 'Re-create venv in `.venv` directory'
+echo "Re-create venv in '.venv' directory"
 rm -rf .venv
 /usr/bin/python3.6 -m venv --copies .venv
 
