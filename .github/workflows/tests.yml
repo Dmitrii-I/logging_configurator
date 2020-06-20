@@ -1,0 +1,27 @@
+name: tests
+
+on:
+  pull_request:
+    branches:
+      - '**'
+  push:
+    branches:
+      - '**'
+  schedule:
+    - cron:  '21 9 * * *'
+
+jobs:
+  tests-ubuntu-18:
+    runs-on: ubuntu-18.04
+    steps:
+
+    - name: checkout repository
+      uses: actions/checkout@master
+
+    - name: Recreate venv
+      shell: bash {0}
+      run: ./recreate-venv.sh
+
+    - name: Run tests
+      shell: bash {0}
+      run: ./run-tests.sh
