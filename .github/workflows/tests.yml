@@ -15,6 +15,11 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
 
+    - name: install APT packages
+      run: |
+        sudo apt-get update
+        sudo apt-get install python3-venv
+
     - name: checkout repository
       uses: actions/checkout@master
 
