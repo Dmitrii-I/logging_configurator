@@ -1,7 +1,8 @@
+"""Setup configuration"""
+
 import os.path
 import sys
 from setuptools import setup, Command, find_packages
-from logging_configurator import __version__
 from shutil import rmtree
 
 
@@ -38,17 +39,28 @@ class UploadCommand(Command):
         sys.exit()
 
 
+package_name = "logging_configurator"
+
+meta = {}
+with open("src/logging_configurator/__init__.py") as f:
+    for line in f:
+        try:
+            exec(line, meta)
+        except ModuleNotFoundError:
+            pass
+
 setup(
-    name='logging_configurator',
-    version=__version__,
-    description='One-liner logging configurator for Python.',
-    long_description='Configure logging in one line and fogetaboutit.',
-    url='https://github.com/Dmitrii-I/logging-configurator',
     author='Dmitrii Izgurskii',
     author_email='izgurskii@gmail.com',
-    license='MIT',
-    keywords='logging',
-    packages=find_packages(exclude=['contrib', 'docs', '*test*']),
     cmdclass={'upload': UploadCommand},
-    python_requires=">=3.6.0"
+    description='One-liner logging configurator for Python.',
+    keywords='logging',
+    license='MIT',
+    long_description='Configure logging in one line and fogetaboutit.',
+    name=package_name,
+    package_dir={"": "src"},
+    packages=find_packages(where="src", exclude=['contrib', 'docs', '*test*']),
+    python_requires=">=3.6.0",
+    url='https://github.com/Dmitrii-I/logging-configurator',
+    version=meta["__version__"]
 )
