@@ -4,6 +4,15 @@ import sys
 from os.path import expanduser, expandvars
 
 
+class StdoutStderrHandler(logging.StreamHandler):
+    def emit(self, record: logging.LogRecord) -> None:
+        if record.levelname in {"ERROR", "CRITICAL", "WARNING"}:
+            self.stream = sys.stderr
+        else:
+            self.stream = sys.stdout
+        super().emit(record=record)
+
+
 def _log_exceptions_in_root_logger() -> None:
     """ Configure root logger to log uncaught exceptions under log level `ERROR`.
 
@@ -18,7 +27,9 @@ def _log_exceptions_in_root_logger() -> None:
     sys.excepthook = handle_exception
 
 
-def configure_logging(path: str = None, log_level: str = "INFO", append: bool = True, stdout: bool = True) -> None:
+def configure_logging(
+    path: str = None, log_level: str = "INFO", append: bool = True, stdout_and_stderr: bool = True
+) -> None:
     """ Configure logging such that log records of all loggers are formatted according to same format and are written
     to a file and/or printed to stdout.
 
@@ -38,8 +49,8 @@ def configure_logging(path: str = None, log_level: str = "INFO", append: bool = 
     :returns: Nothing, only side effects.
     """
 
-    if not path and not stdout:
-        raise ValueError("No place to send logs to: path is empty and stdout is false.")
+    if not path and not stdout_and_stderr:
+        raise ValueError("No place to send logs to: path is empty and stdout_and_stderr is false.")
 
     handlers = {}
 
@@ -52,11 +63,10 @@ def configure_logging(path: str = None, log_level: str = "INFO", append: bool = 
             "mode": "a" if append else "w",
         }
 
-    if stdout:
-        handlers["stdout"] = {
-            "class": "logging.StreamHandler",
+    if stdout_and_stderr:
+        handlers["stdout_and_stderr"] = {
+            "class": "logging_configurator.core.StdoutStderrHandler",
             "formatter": "simple",
-            "stream": sys.stdout,  # stderr will be used if not specified
         }
 
     config = {
