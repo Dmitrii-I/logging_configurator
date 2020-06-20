@@ -6,7 +6,6 @@
 #
 attrs==19.3.0             # via pytest
 importlib-metadata==1.6.1  # via pluggy, pytest
-file:///home/dima/logging_configurator  # via -r requirements.in
 more-itertools==8.4.0     # via pytest
 packaging==20.4           # via pytest
 pluggy==0.13.1            # via pytest
