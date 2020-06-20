@@ -18,7 +18,7 @@ def _log_exceptions_in_root_logger() -> None:
     sys.excepthook = handle_exception
 
 
-def configure_logging(path: str = None, log_level: str = 'INFO', append: bool = True, stdout: bool = True) -> None:
+def configure_logging(path: str = None, log_level: str = "INFO", append: bool = True, stdout: bool = True) -> None:
     """ Configure logging such that log records of all loggers are formatted according to same format and are written
     to a file and/or printed to stdout.
 
@@ -39,37 +39,37 @@ def configure_logging(path: str = None, log_level: str = 'INFO', append: bool = 
     """
 
     if not path and not stdout:
-        raise ValueError('No place to send logs to: path is empty and stdout is false.')
+        raise ValueError("No place to send logs to: path is empty and stdout is false.")
 
     handlers = {}
 
     if path:
-        handlers['file'] = {
-            'class': 'logging.FileHandler',
-            'formatter': 'simple',
-            'filename': expandvars(expanduser(path)),
-            'encoding': 'utf8',
-            'mode': 'a' if append else 'w',
+        handlers["file"] = {
+            "class": "logging.FileHandler",
+            "formatter": "simple",
+            "filename": expandvars(expanduser(path)),
+            "encoding": "utf8",
+            "mode": "a" if append else "w",
         }
 
     if stdout:
-        handlers['stdout'] = {
-            'class': 'logging.StreamHandler',
-            'formatter': 'simple',
-            'stream': sys.stdout  # stderr will be used if not specified
+        handlers["stdout"] = {
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+            "stream": sys.stdout,  # stderr will be used if not specified
         }
 
     config = {
-        'version': 1,
-        'disable_existing_loggers': False,
-        'formatters': {
-            'simple': {
-                'format': "[%(asctime)s] [%(name)-25.25s] [%(levelname)-7.7s] %(message)s",
-                'datefmt': "%Y-%m-%d %H:%M:%S"
+        "version": 1,
+        "disable_existing_loggers": False,
+        "formatters": {
+            "simple": {
+                "format": "[%(asctime)s] [%(name)-25.25s] [%(levelname)-7.7s] %(message)s",
+                "datefmt": "%Y-%m-%d %H:%M:%S",
             }
         },
-        'handlers': handlers,
-        'root': {'level': log_level, 'handlers': list(handlers.keys())}
+        "handlers": handlers,
+        "root": {"level": log_level, "handlers": list(handlers.keys())},
     }
 
     logging.config.dictConfig(config)
