@@ -63,4 +63,5 @@ setup(
     python_requires=">=3.6.0",
     url="https://github.com/Dmitrii-I/logging-configurator",
     version=meta["__version__"],
+    include_package_data=True,
 )
