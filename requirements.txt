@@ -33,8 +33,6 @@ idna==2.10
 importlib-metadata==3.10.0
     # via
     #   keyring
-    #   pluggy
-    #   pytest
     #   twine
 jeepney==0.6.0
     # via
@@ -54,7 +52,7 @@ pkginfo==1.7.0
     # via twine
 pluggy==0.13.1
     # via pytest
-py==1.8.2
+py==1.10.0
     # via pytest
 pycparser==2.20
     # via cffi
@@ -91,8 +89,6 @@ twine==3.4.1
     # via -r requirements.in
 typed-ast==1.4.1
     # via black
-typing-extensions==3.7.4.3
-    # via importlib-metadata
 urllib3==1.26.4
     # via requests
 wcwidth==0.2.4
