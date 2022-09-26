@@ -47,7 +47,8 @@ def configure_logging(
     :param log_level: Log level of the root logger. Defaults to `INFO`.
     :param append: Append the log records to the log file. Defaults to `True`. Is ignored if `path` for the log file
         is not set.
-    :param stdout: Whether to add stdout handler to the root logger.
+    :param stdout_and_stderr: Whether to add stdout and stderr handler to the root logger. Messages with level ERROR,
+        CRITICAL, and WARNING will be logged to stderr.
     :returns: Nothing, only side effects.
     """
 
