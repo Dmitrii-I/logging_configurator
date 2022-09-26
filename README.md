@@ -4,20 +4,30 @@
 
 Configure logging with one line (not counting the import).
 
+## Installation
 
-Configure logging using defaults (log INFO to stdout/stderr, but not to a log file):
+```
+pip install logging_configurator
+```
+
+## Examples
+
+### Log using defaults: INFO to stdout/stderr
+
 ```
 from logging_configurator import configure_logging
 configure_logging()
 ```
 
-Logging to a file and to stdout/stderr:
+### Log to a file and to stdout/stderr
+
 ```
 from logging_configurator import configure_logging
 configure_logging(path="foo.log", stdout_and_stderr=True)
 ```
 
-Log to a file and if file exists, delete its contents first:
+### Log to a file, delete contents first
+
 ```
 from logging_configurator import configure_logging
 configure_logging(path="foo.log", append=False)
