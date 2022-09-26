@@ -60,7 +60,7 @@ setup(
     name=package_name,
     package_dir={"": "src"},
     packages=find_packages(where="src", exclude=["contrib", "docs", "*test*"]),
-    python_requires=">=3.6.0",
+    python_requires=">=3.7.0",
     url="https://github.com/Dmitrii-I/logging-configurator",
     version=meta["__version__"],
     include_package_data=True,
