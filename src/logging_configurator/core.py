@@ -2,6 +2,8 @@ import logging
 import logging.config
 import sys
 from os.path import expanduser, expandvars
+from typing import Union
+from pathlib import Path
 
 
 class StdoutStderrHandler(logging.StreamHandler):
@@ -28,7 +30,7 @@ def _log_exceptions_in_root_logger() -> None:
 
 
 def configure_logging(
-    path: str = None, log_level: str = "INFO", append: bool = True, stdout_and_stderr: bool = True
+    path: Union[str, Path] = None, log_level: str = "INFO", append: bool = True, stdout_and_stderr: bool = True
 ) -> None:
     """ Configure logging such that log records of all loggers are formatted according to same format and are written
     to a file and/or printed to stdout.
@@ -55,6 +57,8 @@ def configure_logging(
     handlers = {}
 
     if path:
+        Path(path).expanduser().parent.mkdir(parents=True, exist_ok=True)
+
         handlers["file"] = {
             "class": "logging.FileHandler",
             "formatter": "simple",

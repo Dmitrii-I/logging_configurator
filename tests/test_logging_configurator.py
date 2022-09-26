@@ -1,10 +1,12 @@
 """Test `logging_configurator` package."""
 
 import os.path
-from tempfile import TemporaryDirectory
+from tempfile import TemporaryDirectory, NamedTemporaryFile
 import os
 import shutil
 import sys
+from pathlib import Path
+from logging_configurator import configure_logging
 
 
 def test_common_scenario():
@@ -35,3 +37,16 @@ def test_common_scenario():
 
         assert actual_log_file_content != actual_stdout_content
         assert actual_log_file_content == actual_stdout_content + actual_stderr_content
+
+
+def test_directory_creation():
+    """Test that `configure_logging` creates necessary directory tree to save the log file.
+
+    For example calling `configure(path="~/foo/bar/log.log")` should not fail if directory tree ~/foo/bar does not
+    exist. Instead ,the directory tree should be created automatically.
+    """
+    with TemporaryDirectory() as td:
+        path = Path(td) / Path("foo/bar.log")
+        assert not os.path.exists(path=path)
+        configure_logging(path=path)
+        assert os.path.exists(path=path)
