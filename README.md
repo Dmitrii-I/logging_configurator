@@ -22,3 +22,13 @@ Log to a file and if file exists, delete its contents first:
 from logging_configurator import configure_logging
 configure_logging(path="foo.log", append=False)
 ```
+
+## Publishing to PyPI
+
+```
+git checkout <tag>
+python -m build
+twine check dist/*
+twine upload dist/*
+git checkout master
+```
